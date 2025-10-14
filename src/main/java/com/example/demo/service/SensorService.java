@@ -30,7 +30,7 @@ public class SensorService {
     public SensorData updateSensorData(Long id, SensorData updatedSensorData) {
         return sensorDataRepository.findById(id)
                 .map(sensorData -> {
-                    sensorData.setBusId(updatedSensorData.getBusId());
+                    sensorData.setBus(updatedSensorData.getBus());
                     sensorData.setSensorType(updatedSensorData.getSensorType());
                     sensorData.setValue(updatedSensorData.getValue());
                     sensorData.setTimestamp(updatedSensorData.getTimestamp());

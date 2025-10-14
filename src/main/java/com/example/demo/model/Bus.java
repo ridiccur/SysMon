@@ -1,11 +1,9 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,7 +23,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "buses")
-
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,4 +33,7 @@ public class Bus {
     @Size(min = 1, max = 100, message = "Название должно быть от 1 до 100 символов")
     private String model;
 
+    @OneToMany(mappedBy = "bus", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<SensorData> sensorDataList;
 }
