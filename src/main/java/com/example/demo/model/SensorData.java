@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +21,7 @@ public class SensorData {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bus_id", nullable = false)
+    @JsonIgnore
     private Bus bus;
 
     @Enumerated(EnumType.STRING)

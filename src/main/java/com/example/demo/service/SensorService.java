@@ -48,6 +48,7 @@ public class SensorService {
         return false;
     }
 
-
-
+    public List<SensorData> getSensorDataByBusId(Long busId) {
+        return sensorDataRepository.findByBusId(busId);
+    }
 }

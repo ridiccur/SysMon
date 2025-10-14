@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.SensorDataCreateDTO;
+import com.example.demo.model.Bus;
 import com.example.demo.model.SensorData;
 import com.example.demo.service.SensorService;
+import com.example.demo.service.BusService;
 
 import jakarta.validation.Valid;;
 
@@ -25,14 +28,24 @@ import jakarta.validation.Valid;;
 @RequestMapping("/api/sensors")
 public class SensorController {
     private final SensorService sensorService;
-    public SensorController(SensorService sensorService) {
+    private final BusService busService; 
+    public SensorController(SensorService sensorService, BusService busService) {
         this.sensorService = sensorService;
+        this.busService = busService;
     }
 
     @PostMapping
-    public ResponseEntity<SensorData> createSensorData(@Valid @RequestBody SensorData sensorData) {
-        SensorData createdSensorData = sensorService.createSensorData(sensorData);
-        return new ResponseEntity<>(createdSensorData, HttpStatus.CREATED);
+    public ResponseEntity<SensorData> createSensorData(@RequestBody SensorDataCreateDTO dto) {
+        Bus bus = busService.getBusById(dto.getBusId())
+                .orElseThrow(() -> new RuntimeException("Bus not found"));
+        SensorData sensorData = new SensorData();
+        sensorData.setSensorType(dto.getSensorType());
+        sensorData.setValue(dto.getValue());
+        sensorData.setTimestamp(dto.getTimestamp());
+        sensorData.setAnomaly(dto.isAnomaly());
+        sensorData.setBus(bus);
+        SensorData saved = sensorService.createSensorData(sensorData);
+        return ResponseEntity.ok(saved);
     }
 
     @GetMapping
@@ -40,6 +53,11 @@ public class SensorController {
             @PageableDefault(size = 20) Pageable pageable,
             @RequestParam(required = false) String type) {
         return sensorService.getAll();
+    }
+
+    @GetMapping("{busId}")
+    public List<SensorData> getSensorDataByBusId(@PathVariable Long busId) {
+        return sensorService.getSensorDataByBusId(busId);
     }
 
     @PutMapping("{id}")
