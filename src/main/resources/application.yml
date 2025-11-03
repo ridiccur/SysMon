@@ -21,18 +21,18 @@ spring:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         hibernate:
             ddl-auto: update
-    jwt:
-        secret: XXX
-        access:
-            cookie_name: access_token
-            duration:
-                minute: 5
-                second: 300
-        refresh:
-            cookie_name: refresh_token
-            duration:
-                day: 7
-                second: 604800
+jwt:
+    secret: 66546A555E5A7234753778214123222A472D4B614E645262356B587032733576
+    access:
+        cookie_name: access_token
+        duration:
+            minute: 5
+            second: 300
+    refresh:
+        cookie_name: refresh_token
+        duration:
+        day: 7
+        second: 604800
 server:
     port: 8080
 ---
