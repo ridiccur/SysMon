@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CookieUtil {
-    @Value("${JWT_ACCESS_COOKIE_NAME}")
+    @Value("${jwt.access.cookie_name}")
     private String accessTokenCookieName;
-    @Value("${JWT_REFRESH_COOKIE_NAME}")
+    @Value("${jwt.refresh.cookie_name}")
     private String refreshTokenCookieName;
     public HttpCookie createAccessTokenCookie(String accessToken, 
     long duration) {

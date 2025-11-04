@@ -31,8 +31,13 @@ jwt:
     refresh:
         cookie_name: refresh_token
         duration:
-        day: 7
-        second: 604800
+            day: 7
+            second: 604800
+upload:
+    path: /home/user/uploads
+logging:
+    file:
+        name: sysmon.log
 server:
     port: 8080
 ---

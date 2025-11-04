@@ -1,0 +1,351 @@
+2025-11-04T03:13:50.093+03:00  INFO 5000 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 5000 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T03:13:50.095+03:00  INFO 5000 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T03:13:50.131+03:00  INFO 5000 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-04T03:13:50.132+03:00  INFO 5000 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-04T03:13:50.938+03:00  INFO 5000 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T03:13:51.012+03:00  INFO 5000 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 6 JPA repository interfaces.
+2025-11-04T03:13:51.538+03:00  INFO 5000 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-04T03:13:51.550+03:00  INFO 5000 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-04T03:13:51.551+03:00  INFO 5000 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-04T03:13:51.597+03:00  INFO 5000 --- [SysMon] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-04T03:13:51.598+03:00  INFO 5000 --- [SysMon] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1464 ms
+2025-11-04T03:13:51.726+03:00  INFO 5000 --- [SysMon] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-04T03:13:51.772+03:00  INFO 5000 --- [SysMon] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-04T03:13:51.807+03:00  INFO 5000 --- [SysMon] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-04T03:13:52.044+03:00  INFO 5000 --- [SysMon] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-04T03:13:52.068+03:00  INFO 5000 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T03:13:52.219+03:00  INFO 5000 --- [SysMon] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48cebe13
+2025-11-04T03:13:52.220+03:00  INFO 5000 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T03:13:52.252+03:00  WARN 5000 --- [SysMon] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-04T03:13:52.272+03:00  INFO 5000 --- [SysMon] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-04T03:13:53.034+03:00  INFO 5000 --- [SysMon] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-04T03:13:53.119+03:00  INFO 5000 --- [SysMon] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:13:53.439+03:00  INFO 5000 --- [SysMon] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-04T03:13:53.586+03:00  WARN 5000 --- [SysMon] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-04T03:13:54.115+03:00  INFO 5000 --- [SysMon] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-11-04T03:13:54.141+03:00  INFO 5000 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-04T03:13:54.149+03:00  INFO 5000 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 4.472 seconds (process running for 4.814)
+2025-11-04T03:13:58.512+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-04T03:13:58.512+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-04T03:13:58.513+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-04T03:13:58.541+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-1] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.html [GET][0m
+2025-11-04T03:13:58.567+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-1] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.html [GET] in 26 ms[0m
+2025-11-04T03:13:58.586+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-2] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui.css [GET][0m
+2025-11-04T03:13:58.590+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-5] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-bundle.js [GET][0m
+2025-11-04T03:13:58.590+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-4] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-initializer.js [GET][0m
+2025-11-04T03:13:58.590+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-6] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-standalone-preset.js [GET][0m
+2025-11-04T03:13:58.590+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-3] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.css [GET][0m
+2025-11-04T03:13:58.593+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-2] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui.css [GET] in 7 ms[0m
+2025-11-04T03:13:58.593+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-3] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.css [GET] in 3 ms[0m
+2025-11-04T03:13:58.595+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-6] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-standalone-preset.js [GET] in 5 ms[0m
+2025-11-04T03:13:58.609+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-5] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-bundle.js [GET] in 19 ms[0m
+2025-11-04T03:13:58.629+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-4] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-initializer.js [GET] in 39 ms[0m
+2025-11-04T03:13:58.758+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-8] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/favicon-32x32.png [GET][0m
+2025-11-04T03:13:58.758+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-7] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs/swagger-config [GET][0m
+2025-11-04T03:13:58.761+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-8] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/favicon-32x32.png [GET] in 3 ms[0m
+2025-11-04T03:13:58.793+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-7] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs/swagger-config [GET] in 35 ms[0m
+2025-11-04T03:13:58.808+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-9] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs [GET][0m
+2025-11-04T03:13:59.096+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 277 ms
+2025-11-04T03:13:59.121+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-9] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs [GET] in 313 ms[0m
+2025-11-04T03:14:15.046+03:00  INFO 5000 --- [SysMon] [http-nio-8080-exec-10] Request                                  : [32mUser: anonymousUser requested URL: /api/auth/login [POST][0m
+2025-11-04T03:14:15.309+03:00  WARN 5000 --- [SysMon] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.util.ConcurrentModificationException]
+2025-11-04T03:16:19.111+03:00  INFO 13368 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 13368 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T03:16:19.113+03:00 DEBUG 13368 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-04T03:16:19.114+03:00  INFO 13368 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T03:16:19.152+03:00  INFO 13368 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-04T03:16:19.152+03:00  INFO 13368 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-04T03:16:19.918+03:00  INFO 13368 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T03:16:19.983+03:00  INFO 13368 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 6 JPA repository interfaces.
+2025-11-04T03:16:20.504+03:00  INFO 13368 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-04T03:16:20.517+03:00  INFO 13368 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-04T03:16:20.517+03:00  INFO 13368 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-04T03:16:20.563+03:00  INFO 13368 --- [SysMon] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-04T03:16:20.563+03:00  INFO 13368 --- [SysMon] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1410 ms
+2025-11-04T03:16:20.697+03:00  INFO 13368 --- [SysMon] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-04T03:16:20.742+03:00  INFO 13368 --- [SysMon] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-04T03:16:20.780+03:00  INFO 13368 --- [SysMon] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-04T03:16:21.018+03:00  INFO 13368 --- [SysMon] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-04T03:16:21.044+03:00  INFO 13368 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T03:16:21.194+03:00  INFO 13368 --- [SysMon] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f1739c6
+2025-11-04T03:16:21.195+03:00  INFO 13368 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T03:16:21.222+03:00  WARN 13368 --- [SysMon] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-04T03:16:21.240+03:00  INFO 13368 --- [SysMon] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-04T03:16:21.987+03:00  INFO 13368 --- [SysMon] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-04T03:16:22.074+03:00  INFO 13368 --- [SysMon] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:16:22.315+03:00 DEBUG 13368 --- [SysMon] [restartedMain] com.example.demo.jwt.JwtAuthFilter       : Filter 'jwtAuthFilter' configured for use
+2025-11-04T03:16:22.388+03:00  INFO 13368 --- [SysMon] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-04T03:16:22.537+03:00  WARN 13368 --- [SysMon] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-04T03:16:22.776+03:00 DEBUG 13368 --- [SysMon] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, JwtAuthFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-11-04T03:16:23.040+03:00  INFO 13368 --- [SysMon] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-11-04T03:16:23.066+03:00  INFO 13368 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-04T03:16:23.073+03:00  INFO 13368 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 4.367 seconds (process running for 4.74)
+2025-11-04T03:16:25.590+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-04T03:16:25.590+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-04T03:16:25.591+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-04T03:16:25.607+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.html
+2025-11-04T03:16:25.612+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.615+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.html
+2025-11-04T03:16:25.624+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-1] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.html [GET][0m
+2025-11-04T03:16:25.648+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-1] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.html [GET] in 23 ms[0m
+2025-11-04T03:16:25.664+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui.css
+2025-11-04T03:16:25.665+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.666+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-11-04T03:16:25.666+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-bundle.js
+2025-11-04T03:16:25.666+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.css
+2025-11-04T03:16:25.666+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-initializer.js
+2025-11-04T03:16:25.666+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui.css
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.css
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-initializer.js
+2025-11-04T03:16:25.667+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-bundle.js
+2025-11-04T03:16:25.668+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-5] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-standalone-preset.js [GET][0m
+2025-11-04T03:16:25.668+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-3] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui.css [GET][0m
+2025-11-04T03:16:25.668+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-7] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-initializer.js [GET][0m
+2025-11-04T03:16:25.668+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-2] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.css [GET][0m
+2025-11-04T03:16:25.668+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-4] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-bundle.js [GET][0m
+2025-11-04T03:16:25.671+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-2] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.css [GET] in 3 ms[0m
+2025-11-04T03:16:25.672+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-5] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-standalone-preset.js [GET] in 4 ms[0m
+2025-11-04T03:16:25.673+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-3] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui.css [GET] in 5 ms[0m
+2025-11-04T03:16:25.686+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-4] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-bundle.js [GET] in 18 ms[0m
+2025-11-04T03:16:25.702+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-7] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-initializer.js [GET] in 34 ms[0m
+2025-11-04T03:16:25.834+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/favicon-32x32.png
+2025-11-04T03:16:25.835+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs/swagger-config
+2025-11-04T03:16:25.835+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.836+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/favicon-32x32.png
+2025-11-04T03:16:25.836+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.836+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs/swagger-config
+2025-11-04T03:16:25.836+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-8] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/favicon-32x32.png [GET][0m
+2025-11-04T03:16:25.837+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-6] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs/swagger-config [GET][0m
+2025-11-04T03:16:25.839+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-8] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/favicon-32x32.png [GET] in 3 ms[0m
+2025-11-04T03:16:25.872+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-6] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs/swagger-config [GET] in 35 ms[0m
+2025-11-04T03:16:25.879+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
+2025-11-04T03:16:25.880+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:25.880+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
+2025-11-04T03:16:25.881+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-9] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs [GET][0m
+2025-11-04T03:16:26.181+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 289 ms
+2025-11-04T03:16:26.209+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-9] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs [GET] in 328 ms[0m
+2025-11-04T03:16:40.351+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/login
+2025-11-04T03:16:40.358+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-11-04T03:16:40.358+03:00 DEBUG 13368 --- [SysMon] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/login
+2025-11-04T03:16:40.359+03:00  INFO 13368 --- [SysMon] [http-nio-8080-exec-10] Request                                  : [32mUser: anonymousUser requested URL: /api/auth/login [POST][0m
+2025-11-04T03:16:40.611+03:00  WARN 13368 --- [SysMon] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.util.ConcurrentModificationException]
+2025-11-04T03:19:59.841+03:00  INFO 11400 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 11400 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T03:19:59.844+03:00  INFO 11400 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T03:19:59.885+03:00  INFO 11400 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-04T03:19:59.886+03:00  INFO 11400 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-04T03:20:00.705+03:00  INFO 11400 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T03:20:00.777+03:00  INFO 11400 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2025-11-04T03:20:01.299+03:00  INFO 11400 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-04T03:20:01.315+03:00  INFO 11400 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-04T03:20:01.315+03:00  INFO 11400 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-04T03:20:01.367+03:00  INFO 11400 --- [SysMon] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-04T03:20:01.367+03:00  INFO 11400 --- [SysMon] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1481 ms
+2025-11-04T03:20:01.512+03:00  INFO 11400 --- [SysMon] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-04T03:20:01.561+03:00  INFO 11400 --- [SysMon] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-04T03:20:01.592+03:00  INFO 11400 --- [SysMon] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-04T03:20:01.842+03:00  INFO 11400 --- [SysMon] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-04T03:20:01.870+03:00  INFO 11400 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T03:20:02.029+03:00  INFO 11400 --- [SysMon] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6ea42173
+2025-11-04T03:20:02.030+03:00  INFO 11400 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T03:20:02.061+03:00  WARN 11400 --- [SysMon] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-04T03:20:02.077+03:00  INFO 11400 --- [SysMon] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-04T03:20:02.890+03:00  INFO 11400 --- [SysMon] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-04T03:20:02.988+03:00  INFO 11400 --- [SysMon] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:20:03.233+03:00  INFO 11400 --- [SysMon] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-04T03:20:03.801+03:00  INFO 11400 --- [SysMon] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-04T03:20:03.973+03:00  WARN 11400 --- [SysMon] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-04T03:20:04.498+03:00  INFO 11400 --- [SysMon] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-11-04T03:20:04.529+03:00  INFO 11400 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-04T03:20:04.538+03:00  INFO 11400 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 5.128 seconds (process running for 5.475)
+2025-11-04T03:20:11.319+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-04T03:20:11.320+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-04T03:20:11.321+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-04T03:20:11.352+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-1] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.html [GET][0m
+2025-11-04T03:20:11.374+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-1] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.html [GET] in 21 ms[0m
+2025-11-04T03:20:11.390+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-2] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui.css [GET][0m
+2025-11-04T03:20:11.391+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-4] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-bundle.js [GET][0m
+2025-11-04T03:20:11.391+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-5] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-standalone-preset.js [GET][0m
+2025-11-04T03:20:11.392+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-6] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-initializer.js [GET][0m
+2025-11-04T03:20:11.392+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-3] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.css [GET][0m
+2025-11-04T03:20:11.394+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-3] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.css [GET] in 3 ms[0m
+2025-11-04T03:20:11.395+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-2] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui.css [GET] in 5 ms[0m
+2025-11-04T03:20:11.397+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-5] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-standalone-preset.js [GET] in 6 ms[0m
+2025-11-04T03:20:11.408+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-4] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-bundle.js [GET] in 17 ms[0m
+2025-11-04T03:20:11.422+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-6] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-initializer.js [GET] in 30 ms[0m
+2025-11-04T03:20:11.560+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-7] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs/swagger-config [GET][0m
+2025-11-04T03:20:11.560+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-8] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/favicon-32x32.png [GET][0m
+2025-11-04T03:20:11.563+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-8] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/favicon-32x32.png [GET] in 3 ms[0m
+2025-11-04T03:20:11.598+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-7] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs/swagger-config [GET] in 38 ms[0m
+2025-11-04T03:20:11.614+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-9] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs [GET][0m
+2025-11-04T03:20:11.906+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 282 ms
+2025-11-04T03:20:11.933+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-9] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs [GET] in 319 ms[0m
+2025-11-04T03:20:21.938+03:00  INFO 11400 --- [SysMon] [http-nio-8080-exec-10] Request                                  : [32mUser: anonymousUser requested URL: /api/auth/login [POST][0m
+2025-11-04T03:20:22.098+03:00  WARN 11400 --- [SysMon] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException]
+2025-11-04T03:20:37.359+03:00  INFO 11400 --- [SysMon] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-04T03:20:37.364+03:00  INFO 11400 --- [SysMon] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-04T03:20:37.368+03:00  INFO 11400 --- [SysMon] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:20:37.371+03:00  INFO 11400 --- [SysMon] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T03:20:37.374+03:00  INFO 11400 --- [SysMon] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T03:22:28.172+03:00  INFO 8844 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 8844 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T03:22:28.174+03:00  INFO 8844 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T03:22:28.221+03:00  INFO 8844 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-04T03:22:28.221+03:00  INFO 8844 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-04T03:22:28.964+03:00  INFO 8844 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T03:22:29.035+03:00  INFO 8844 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 6 JPA repository interfaces.
+2025-11-04T03:22:29.592+03:00  INFO 8844 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-04T03:22:29.607+03:00  INFO 8844 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-04T03:22:29.607+03:00  INFO 8844 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-04T03:22:29.654+03:00  INFO 8844 --- [SysMon] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-04T03:22:29.654+03:00  INFO 8844 --- [SysMon] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1433 ms
+2025-11-04T03:22:29.792+03:00  INFO 8844 --- [SysMon] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-04T03:22:29.841+03:00  INFO 8844 --- [SysMon] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-04T03:22:29.881+03:00  INFO 8844 --- [SysMon] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-04T03:22:30.132+03:00  INFO 8844 --- [SysMon] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-04T03:22:30.163+03:00  INFO 8844 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T03:22:30.309+03:00  INFO 8844 --- [SysMon] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2d65684e
+2025-11-04T03:22:30.310+03:00  INFO 8844 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T03:22:30.337+03:00  WARN 8844 --- [SysMon] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-04T03:22:30.355+03:00  INFO 8844 --- [SysMon] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-04T03:22:31.123+03:00  INFO 8844 --- [SysMon] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-04T03:22:31.203+03:00  INFO 8844 --- [SysMon] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:22:31.418+03:00  INFO 8844 --- [SysMon] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-04T03:22:31.885+03:00  INFO 8844 --- [SysMon] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-04T03:22:32.030+03:00  WARN 8844 --- [SysMon] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-04T03:22:32.508+03:00  INFO 8844 --- [SysMon] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-11-04T03:22:32.538+03:00  INFO 8844 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-04T03:22:32.546+03:00  INFO 8844 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 4.783 seconds (process running for 5.137)
+2025-11-04T03:22:36.181+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-04T03:22:36.181+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-04T03:22:36.182+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-04T03:22:36.216+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-1] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.html [GET][0m
+2025-11-04T03:22:36.238+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-1] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.html [GET] in 22 ms[0m
+2025-11-04T03:22:36.255+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-2] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui.css [GET][0m
+2025-11-04T03:22:36.258+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-5] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-standalone-preset.js [GET][0m
+2025-11-04T03:22:36.258+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-3] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.css [GET][0m
+2025-11-04T03:22:36.258+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-6] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-initializer.js [GET][0m
+2025-11-04T03:22:36.258+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-4] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-bundle.js [GET][0m
+2025-11-04T03:22:36.260+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-3] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.css [GET] in 3 ms[0m
+2025-11-04T03:22:36.261+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-2] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui.css [GET] in 6 ms[0m
+2025-11-04T03:22:36.265+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-5] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-standalone-preset.js [GET] in 7 ms[0m
+2025-11-04T03:22:36.274+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-4] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-bundle.js [GET] in 16 ms[0m
+2025-11-04T03:22:36.291+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-6] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-initializer.js [GET] in 33 ms[0m
+2025-11-04T03:22:36.414+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-8] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/favicon-32x32.png [GET][0m
+2025-11-04T03:22:36.414+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-7] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs/swagger-config [GET][0m
+2025-11-04T03:22:36.417+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-8] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/favicon-32x32.png [GET] in 3 ms[0m
+2025-11-04T03:22:36.450+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-7] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs/swagger-config [GET] in 36 ms[0m
+2025-11-04T03:22:36.463+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-9] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs [GET][0m
+2025-11-04T03:22:36.755+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 279 ms
+2025-11-04T03:22:36.781+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-9] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs [GET] in 317 ms[0m
+2025-11-04T03:22:48.158+03:00  INFO 8844 --- [SysMon] [http-nio-8080-exec-10] Request                                  : [32mUser: anonymousUser requested URL: /api/auth/login [POST][0m
+2025-11-04T03:22:48.319+03:00  WARN 8844 --- [SysMon] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException]
+2025-11-04T03:23:04.799+03:00  INFO 8844 --- [SysMon] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2025-11-04T03:23:04.802+03:00  INFO 8844 --- [SysMon] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-04T03:23:04.806+03:00  INFO 8844 --- [SysMon] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-04T03:23:04.807+03:00 ERROR 8844 --- [SysMon] [http-nio-8080-Acceptor] org.apache.tomcat.util.net.Acceptor      : Socket accept failed
+
+java.nio.channels.AsynchronousCloseException: null
+	at java.base/java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:203) ~[na:na]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.end(ServerSocketChannelImpl.java:383) ~[na:na]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.accept(ServerSocketChannelImpl.java:407) ~[na:na]
+	at org.apache.tomcat.util.net.NioEndpoint.serverSocketAccept(NioEndpoint.java:535) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.NioEndpoint.serverSocketAccept(NioEndpoint.java:70) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.Acceptor.run(Acceptor.java:127) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-11-04T03:23:04.813+03:00  INFO 8844 --- [SysMon] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T03:23:04.816+03:00  INFO 8844 --- [SysMon] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-04T03:23:04.819+03:00  INFO 8844 --- [SysMon] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-04T03:23:04.894+03:00  INFO 8844 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 8844 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T03:23:04.895+03:00  INFO 8844 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T03:23:05.094+03:00  INFO 8844 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T03:23:05.117+03:00  INFO 8844 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 6 JPA repository interfaces.
+2025-11-04T15:06:42.028+03:00  INFO 8304 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication v1.0.0 using Java 21.0.8 with PID 8304 (C:\Users\ridiccur\Desktop\SysMon\target\classes started by ridiccur in C:\Users\ridiccur\Desktop\SysMon)
+2025-11-04T15:06:42.030+03:00  INFO 8304 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : The following 1 profile is active: "dev"
+2025-11-04T15:06:42.081+03:00  INFO 8304 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-04T15:06:42.082+03:00  INFO 8304 --- [SysMon] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-11-04T15:06:42.827+03:00  INFO 8304 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-04T15:06:42.897+03:00  INFO 8304 --- [SysMon] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 6 JPA repository interfaces.
+2025-11-04T15:06:43.405+03:00  INFO 8304 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-04T15:06:43.420+03:00  INFO 8304 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-04T15:06:43.421+03:00  INFO 8304 --- [SysMon] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-04T15:06:43.470+03:00  INFO 8304 --- [SysMon] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-04T15:06:43.470+03:00  INFO 8304 --- [SysMon] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1388 ms
+2025-11-04T15:06:43.589+03:00  INFO 8304 --- [SysMon] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-04T15:06:43.640+03:00  INFO 8304 --- [SysMon] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-04T15:06:43.671+03:00  INFO 8304 --- [SysMon] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-04T15:06:43.904+03:00  INFO 8304 --- [SysMon] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-04T15:06:43.929+03:00  INFO 8304 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-04T15:06:44.078+03:00  INFO 8304 --- [SysMon] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2979b274
+2025-11-04T15:06:44.080+03:00  INFO 8304 --- [SysMon] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-04T15:06:44.109+03:00  WARN 8304 --- [SysMon] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-04T15:06:44.127+03:00  INFO 8304 --- [SysMon] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-04T15:06:44.870+03:00  INFO 8304 --- [SysMon] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-04T15:06:44.957+03:00  INFO 8304 --- [SysMon] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-04T15:06:45.268+03:00  INFO 8304 --- [SysMon] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-11-04T15:06:45.428+03:00  WARN 8304 --- [SysMon] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-04T15:06:45.903+03:00  INFO 8304 --- [SysMon] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-11-04T15:06:45.929+03:00  INFO 8304 --- [SysMon] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-04T15:06:45.936+03:00  INFO 8304 --- [SysMon] [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 4.338 seconds (process running for 4.688)
+2025-11-04T15:07:11.693+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-04T15:07:11.694+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-04T15:07:11.694+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-11-04T15:07:11.728+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-1] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.html [GET][0m
+2025-11-04T15:07:11.751+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-1] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.html [GET] in 24 ms[0m
+2025-11-04T15:07:11.765+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-2] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui.css [GET][0m
+2025-11-04T15:07:11.769+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-3] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/index.css [GET][0m
+2025-11-04T15:07:11.769+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-6] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-initializer.js [GET][0m
+2025-11-04T15:07:11.769+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-5] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-standalone-preset.js [GET][0m
+2025-11-04T15:07:11.769+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-4] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/swagger-ui-bundle.js [GET][0m
+2025-11-04T15:07:11.771+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-2] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui.css [GET] in 7 ms[0m
+2025-11-04T15:07:11.772+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-3] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/index.css [GET] in 3 ms[0m
+2025-11-04T15:07:11.776+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-5] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-standalone-preset.js [GET] in 7 ms[0m
+2025-11-04T15:07:11.788+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-4] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-ui-bundle.js [GET] in 17 ms[0m
+2025-11-04T15:07:11.801+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-6] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/swagger-initializer.js [GET] in 32 ms[0m
+2025-11-04T15:07:11.919+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-7] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs/swagger-config [GET][0m
+2025-11-04T15:07:11.919+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-8] Request                                  : [34mUser: anonymousUser requested URL: /swagger-ui/favicon-32x32.png [GET][0m
+2025-11-04T15:07:11.921+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-8] Response                                 : [34mUser: anonymousUser completed URL: /swagger-ui/favicon-32x32.png [GET] in 2 ms[0m
+2025-11-04T15:07:11.950+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-7] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs/swagger-config [GET] in 32 ms[0m
+2025-11-04T15:07:11.963+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-9] Request                                  : [34mUser: anonymousUser requested URL: /v3/api-docs [GET][0m
+2025-11-04T15:07:12.261+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 286 ms
+2025-11-04T15:07:12.285+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-9] Response                                 : [34mUser: anonymousUser completed URL: /v3/api-docs [GET] in 322 ms[0m
+2025-11-04T15:07:38.121+03:00  INFO 8304 --- [SysMon] [http-nio-8080-exec-10] Request                                  : [32mUser: anonymousUser requested URL: /api/auth/login [POST][0m
+2025-11-04T15:07:38.410+03:00  WARN 8304 --- [SysMon] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.util.ConcurrentModificationException]

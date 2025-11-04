@@ -35,13 +35,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    @Value("${JWT_ACCESS_TOKEN_DURATION_MINUTE}")
+    @Value("${jwt.access.duration.minute}")
     private long accessTokenDurationMinute;
-    @Value("${JWT_ACCESS_TOKEN_DURATION_SECOND}")
+    @Value("${jwt.access.duration.second}")
     private long accessTokenDurationSecond;
-    @Value("${JWT_REFRESH_TOKEN_DURATION_DAY}")
+    @Value("${jwt.refresh.duration.day}")
     private long refreshTokenDurationDay;
-    @Value("${JWT_REFRESH_TOKEN_DURATION_SECOND}")
+    @Value("${jwt.refresh.duration.second}")
     private long refreshTokenDurationSecond;
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
