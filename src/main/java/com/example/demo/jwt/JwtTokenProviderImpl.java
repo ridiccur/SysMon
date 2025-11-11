@@ -19,6 +19,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import com.example.demo.model.Token;
+import com.example.demo.repository.TokenRepository;
 import com.example.demo.enums.TokenType;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 public class JwtTokenProviderImpl implements JwtTokenProvider{
     @Value("${jwt.secret}")
     private String jwtSecret;
+
+    private final TokenRepository tokenRepository;
     @Override
     public Token generateAccessToken(Map<String, Object> extraClaims, 
     long duration, TemporalUnit durationType, UserDetails user) {
@@ -75,6 +78,10 @@ public class JwtTokenProviderImpl implements JwtTokenProvider{
                     .setSigningKey(decodeSecretKey(jwtSecret))
                     .build()
                     .parseClaimsJws(tokenValue);
+            Token token =tokenRepository.findByValue(tokenValue)
+                .orElse(null);
+            if (token == null || !token.isDisabled())
+                    return false;
             return true;
         }catch(JwtException e) {
             return false;
