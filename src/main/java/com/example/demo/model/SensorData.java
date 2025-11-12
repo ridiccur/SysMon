@@ -36,4 +36,6 @@ public class SensorData {
 
     @Column(name = "anomaly", nullable = false)
     private boolean anomaly = false;
+
+    String filePath;
 }

@@ -34,7 +34,7 @@ jwt:
             day: 7
             second: 604800
 upload:
-    path: /home/user/uploads
+    path: /Users/ridiccur/.uploads
 logging:
     file:
         name: sysmon.log
