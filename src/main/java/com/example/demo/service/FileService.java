@@ -22,11 +22,16 @@ public class FileService {
     public String storeFile(MultipartFile file) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
 
+        String contentType = file.getContentType();
+        if (!"application/json".equals(contentType)) {
+            throw new IOException("Only JSON files are allowed");
+        }   
+
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
     
-        Path target = uploadPath.resolve(filename);
+        Path target = uploadPath.resolve(filename + ".json");
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
         return target.toString();
     }
