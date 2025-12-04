@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import com.example.demo.model.SensorData;
+import com.example.demo.model.SensorType;
 import com.example.demo.repository.SensorDataRepository;
 
 @Service
@@ -16,6 +17,10 @@ public class SensorService {
 
     public List<SensorData> getAll() {
         return sensorDataRepository.findAll();
+    }
+
+    public List<SensorData> saveAllSensorData(List<SensorData> sensorDataList) {
+    return sensorDataRepository.saveAll(sensorDataList);
     }
 
     public SensorData getSensorData(Long id) {
@@ -58,5 +63,21 @@ public class SensorService {
 
         sensorData.setFilePath(filePath);
         sensorDataRepository.save(sensorData);
+    }
+
+    public boolean checkForAnomaly(SensorData sensorData) {
+    SensorType type = sensorData.getSensorType();
+    Double value = sensorData.getValue();
+
+    switch (type) {
+        case ENGINE_TEMP:
+            return value > 100.0 || value < 60.0;
+        case TIRE_PRESSURE:
+            return value > 3.5 || value < 1.8;
+        case FUEL_LEVEL:
+            return value < 5.0;
+        default:
+            return false;
+        }
     }
 }

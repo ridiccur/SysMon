@@ -17,21 +17,22 @@ public class FileService {
     @Value("${upload.path}")
     private String uploadDir;
 
-    String filename = UUID.randomUUID().toString();
-    
     public String storeFile(MultipartFile file) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
 
         String contentType = file.getContentType();
-        if (!"application/json".equals(contentType)) {
-            throw new IOException("Only JSON files are allowed");
-        }   
+        // Allow only CSV
+        if (contentType != null && !contentType.contains("csv")) {
+            throw new IOException("Only CSV files are allowed. Received: " + contentType);
+        }
 
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-    
-        Path target = uploadPath.resolve(filename + ".json");
+
+        // Unique filename
+        String filename = UUID.randomUUID().toString() + ".csv";
+        Path target = uploadPath.resolve(filename);
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
         return target.toString();
     }
