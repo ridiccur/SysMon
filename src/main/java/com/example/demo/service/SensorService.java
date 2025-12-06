@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import com.example.demo.model.SensorData;
 import com.example.demo.model.SensorType;
@@ -17,6 +18,30 @@ public class SensorService {
 
     public List<SensorData> getAll() {
         return sensorDataRepository.findAll();
+    }
+
+    public List<SensorData> getSensorDataByBusId(Long busId) {
+        return sensorDataRepository.findByBusId(busId);
+    }
+
+    public List<SensorData> getSensorDataByAnomaly(Boolean anomaly) {
+        return sensorDataRepository.findByAnomaly(anomaly);
+    }
+
+    public List<SensorData> getAnomalousSensorData() {
+        return sensorDataRepository.findByAnomalyTrue();
+    }
+    
+    public List<SensorData> getSensorDataByTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+        if (startTime == null && endTime == null) {
+            return sensorDataRepository.findAll();
+        } else if (startTime == null) {
+            return sensorDataRepository.findByTimestampBefore(endTime);
+        } else if (endTime == null) {
+            return sensorDataRepository.findByTimestampAfter(startTime);
+        } else {
+            return sensorDataRepository.findByTimestampBetween(startTime, endTime);
+        }
     }
 
     public List<SensorData> saveAllSensorData(List<SensorData> sensorDataList) {
@@ -51,18 +76,6 @@ public class SensorService {
             return true;
         }
         return false;
-    }
-
-    public List<SensorData> getSensorDataByBusId(Long busId) {
-        return sensorDataRepository.findByBusId(busId);
-    }
-
-    public void addFileToSensorData(Long sensorDataId, String filePath) {
-        SensorData sensorData = sensorDataRepository.findById(sensorDataId)
-                .orElseThrow(() -> new RuntimeException("Sensor data not found"));
-
-        sensorData.setFilePath(filePath);
-        sensorDataRepository.save(sensorData);
     }
 
     public boolean checkForAnomaly(SensorData sensorData) {
