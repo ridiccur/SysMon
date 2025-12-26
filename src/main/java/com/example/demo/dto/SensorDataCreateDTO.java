@@ -11,6 +11,5 @@ public class SensorDataCreateDTO {
     private SensorType sensorType;
     private Double value;
     private LocalDateTime timestamp;
-    private boolean anomaly;
     private Long busId;
 }

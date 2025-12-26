@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+// Entity representing sensor data
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

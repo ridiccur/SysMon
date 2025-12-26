@@ -4,8 +4,9 @@ import com.example.demo.model.Bus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+// Repository for managing bus entities
 @Repository
-public interface BusRepository 
+public interface BusRepository
             extends JpaRepository<Bus, Long> {
 
 }

@@ -12,11 +12,13 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
 
+// Service for handling file storage operations
 @Service
 public class FileService {
     @Value("${upload.path}")
     private String uploadDir;
 
+    // Store uploaded file to server
     public String storeFile(MultipartFile file) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
 

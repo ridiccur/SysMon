@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.service.FileService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
+// Controller for handling file uploads
 @RestController
 @RequiredArgsConstructor
 public class FileController {
 
     private final FileService fileService;
 
+    // Upload a file to the server
+    @Operation(summary = "Загрузка файла на сервер")
     @PostMapping(value = "/upload",
     consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)

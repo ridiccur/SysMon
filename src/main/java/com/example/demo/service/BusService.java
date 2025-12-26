@@ -8,6 +8,7 @@ import java.util.Optional;
 import com.example.demo.model.Bus;
 import com.example.demo.repository.BusRepository;
 
+// Service class for managing bus entities
 @Service
 public class BusService {
     private final BusRepository busRepository;
@@ -15,18 +16,22 @@ public class BusService {
         this.busRepository = busRepository;
     }
 
+    // Get all buses from the database
     public List<Bus> getAllBuses() {
         return busRepository.findAll();
     }
 
+    // Get a bus by its ID
     public Optional<Bus> getBusById(Long id) {
         return busRepository.findById(id);
     }
 
+    // Create a new bus
     public Bus createBus(Bus bus) {
         return busRepository.save(bus);
     }
 
+    // Update an existing bus
     public Bus updateBus(Long id, Bus updatedBus) {
         return busRepository.findById(id)
                 .map(bus -> {
@@ -35,7 +40,8 @@ public class BusService {
                 })
                 .orElse(null);
     }
-    
+
+    // Delete a bus by its ID
     public boolean deleteBus(Long id) {
         if (busRepository.existsById(id)) {
             busRepository.deleteById(id);

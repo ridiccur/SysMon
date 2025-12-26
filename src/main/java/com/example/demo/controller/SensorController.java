@@ -37,8 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-
+// Controller for managing sensor data entities
 @Slf4j
 @RestController
 @RequestMapping("/api/sensors")
@@ -53,6 +52,8 @@ public class SensorController {
         this.csvImportService = csvImportService;
     }
 
+    // Create new sensor data with automatic anomaly check
+    @Operation(summary = "Создать новые данные датчика")
     @PostMapping
     public ResponseEntity<SensorData> createSensorData(@RequestBody SensorDataCreateDTO dto) {
         Bus bus = busService.getBusById(dto.getBusId())
@@ -61,28 +62,40 @@ public class SensorController {
         sensorData.setSensorType(dto.getSensorType());
         sensorData.setValue(dto.getValue());
         sensorData.setTimestamp(dto.getTimestamp());
-        sensorData.setAnomaly(dto.isAnomaly());
         sensorData.setBus(bus);
+
+        // Automatic check for anomaly
+        boolean isAnomaly = sensorService.checkForAnomaly(sensorData);
+        sensorData.setAnomaly(isAnomaly);
+
         SensorData saved = sensorService.createSensorData(sensorData);
         return ResponseEntity.ok(saved);
     }
 
+    // Get all sensor data
+    @Operation(summary = "Получить все данные датчиков")
     @GetMapping
     public List<SensorData> getAllSensorData(
         @PageableDefault(size = 20) Pageable pageable) {
         return sensorService.getAll();
     }
 
+    // Get sensor data with alerts/anomalies
+    @Operation(summary = "Получить данные датчиков с тревогами")
     @GetMapping("alerts")
     public List<SensorData> getAlerts() {
         return sensorService.getAnomalousSensorData();
     }
 
+    // Get sensor data by bus ID
+    @Operation(summary = "Получить данные датчиков по ID автобуса")
     @GetMapping("{busId}")
     public List<SensorData> getSensorDataByBusId(@PathVariable Long busId) {
         return sensorService.getSensorDataByBusId(busId);
     }
 
+    // Get sensor history by time range
+    @Operation(summary = "Получить историю датчиков по диапазону времени")
     @GetMapping("/history")
     public List<SensorData> getSensorHistory(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
@@ -90,6 +103,8 @@ public class SensorController {
         return sensorService.getSensorDataByTimeRange(from, to);
     }
 
+    // Update existing sensor data
+    @Operation(summary = "Обновить существующие данные датчика")
     @PutMapping("{id}")
     public ResponseEntity<SensorData> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorData updatedSensorData) {
         SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
@@ -100,6 +115,8 @@ public class SensorController {
         }
     }
 
+    // Delete sensor data by ID
+    @Operation(summary = "Удалить данные датчика по ID")
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteSensorData(@PathVariable Long id) {
         boolean deleted = sensorService.deleteSensorData(id);
@@ -110,27 +127,9 @@ public class SensorController {
         }
     }
 
+    // Import sensor data from CSV file
+    @Operation(summary = "Импорт данных датчиков из CSV файла")
     @PostMapping(value = "/import-csv", consumes = "multipart/form-data")
-    @Operation(
-        summary = "Import sensor data from CSV file",
-        description = "Upload a CSV file to import sensor data records into the database"
-    )
-    @ApiResponse(
-        responseCode = "200",
-        description = "CSV file imported successfully"
-    )
-    @ApiResponse(
-        responseCode = "400",
-        description = "Invalid file format or empty file"
-    )
-    @ApiResponse(
-        responseCode = "422",
-        description = "CSV file imported with errors in some rows"
-    )
-    @ApiResponse(
-        responseCode = "500",
-        description = "Internal server error"
-    )
     public ResponseEntity<CsvImportResult> importCsv(
             @Parameter(description = "CSV file to upload", required = true)
             @RequestParam("file")
@@ -173,6 +172,7 @@ public class SensorController {
         }
     }
 
+    // Check if uploaded file is CSV
     private boolean isCsvFile(MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
         if (originalFilename == null) {
@@ -185,11 +185,9 @@ public class SensorController {
                "application/vnd.ms-excel".equals(contentType);
     }
 
+    // Export sensor data to CSV file
+    @Operation(summary = "Экспорт данных датчиков в CSV файл")
     @GetMapping("/export-csv")
-    @Operation(
-        summary = "Export sensor data to CSV file",
-        description = "Download all sensor data as a CSV file"
-    )
     public void exportSensorDataToCsv(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sensor_data.csv");

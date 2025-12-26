@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+// Enum representing different types of sensors
 public enum SensorType {
     ENGINE_TEMP("engine_temp"),
     TIRE_PRESSURE("tire_pressure"),

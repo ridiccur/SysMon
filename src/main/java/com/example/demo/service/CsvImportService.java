@@ -22,6 +22,7 @@ import com.example.demo.model.SensorType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+// Service for importing sensor data from CSV files
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class CsvImportService {
     private final SensorService sensorService;
     private final BusService busService;
 
+    // Create CSV format configuration
     private CSVFormat createCsvFormat() {
         return CSVFormat.DEFAULT.builder()
                 .setHeader()
@@ -38,6 +40,7 @@ public class CsvImportService {
                 .build();
     }
 
+    // Import sensor data from CSV file
     public CsvImportResult importProductsFromCsv(MultipartFile file) {
         List<SensorData> valid = new ArrayList<>();
         List<String> errors = new ArrayList<>();
@@ -66,6 +69,7 @@ public class CsvImportService {
         return new CsvImportResult(valid.size(), errors.size(), errors);
     }
 
+    // Process individual CSV record
     private void processCsv(CSVRecord csvRecord, List<SensorData> valid, List<String> errors) {
         try {
             SensorData sensorData = new SensorData();
