@@ -26,6 +26,12 @@ public class SensorService {
         return sensorDataRepository.findAll();
     }
 
+    // Get sensor data by sensor type
+    @Cacheable(value = "sensorDataByType", key = "#sensorType")
+    public List<SensorData> getSensorDataByType(SensorType sensorType) {
+        return sensorDataRepository.findBySensorType(sensorType);
+    }
+
     // Get sensor data by bus ID
     @Cacheable(value = "sensorDataByBus", key = "#busId")
     public List<SensorData> getSensorDataByBusId(Long busId) {

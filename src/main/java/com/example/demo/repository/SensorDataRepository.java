@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.SensorData;
+import com.example.demo.model.SensorType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -29,4 +30,7 @@ public interface SensorDataRepository
             // Find sensor data between two timestamps
             List<SensorData> findByTimestampBetween(LocalDateTime start,
                 LocalDateTime end);
+
+            // Find sensor data by sensor type
+            List<SensorData> findBySensorType(SensorType sensorType);
 }

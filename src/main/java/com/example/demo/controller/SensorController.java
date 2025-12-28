@@ -27,6 +27,7 @@ import com.example.demo.dto.CsvImportResult;
 import com.example.demo.dto.SensorDataCreateDTO;
 import com.example.demo.model.Bus;
 import com.example.demo.model.SensorData;
+import com.example.demo.model.SensorType;
 import com.example.demo.service.SensorService;
 import com.example.demo.service.BusService;
 import com.example.demo.service.CsvImportService;
@@ -82,7 +83,11 @@ public class SensorController {
     @Operation(summary = "Получить все данные датчиков")
     @GetMapping
     public List<SensorData> getAllSensorData(
-        @PageableDefault(size = 20) Pageable pageable) {
+        @PageableDefault(size = 20) Pageable pageable,
+        @RequestParam(required = false) SensorType sensorType) {
+        if (sensorType != null) {
+            return sensorService.getSensorDataByType(sensorType);
+        }
         return sensorService.getAll();
     }
 
