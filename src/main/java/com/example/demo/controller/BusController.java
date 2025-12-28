@@ -7,10 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 // Controller for managing bus entities
+@Tag(name = "Bus controller")
 @RestController
 @RequestMapping("/api/buses")
 public class BusController {

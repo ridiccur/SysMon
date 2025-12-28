@@ -38,4 +38,22 @@ public class FileService {
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
         return target.toString();
     }
+
+    // Get the upload directory path
+    public String getUploadDir() {
+        return uploadDir;
+    }
+
+    // Check if a file exists in the upload directory
+    public boolean fileExists(String filename) {
+        Path uploadPath = Paths.get(uploadDir);
+        Path filePath = uploadPath.resolve(filename);
+        return Files.exists(filePath);
+    }
+
+    // Get the full path to a file in the upload directory
+    public Path getFilePath(String filename) {
+        Path uploadPath = Paths.get(uploadDir);
+        return uploadPath.resolve(filename);
+    }
 }

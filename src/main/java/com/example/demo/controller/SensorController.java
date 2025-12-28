@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.dto.AlertDTO;
 import com.example.demo.dto.CsvImportResult;
 import com.example.demo.dto.SensorDataCreateDTO;
 import com.example.demo.model.Bus;
@@ -36,8 +37,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 // Controller for managing sensor data entities
+@Tag(name = "Sensors controller")
 @Slf4j
 @RestController
 @RequestMapping("/api/sensors")
@@ -52,10 +55,10 @@ public class SensorController {
         this.csvImportService = csvImportService;
     }
 
-    // Create new sensor data with automatic anomaly check
+    // Create new sensor data with automatic anomaly check and return AlertDTO
     @Operation(summary = "Создать новые данные датчика")
     @PostMapping
-    public ResponseEntity<SensorData> createSensorData(@RequestBody SensorDataCreateDTO dto) {
+    public ResponseEntity<AlertDTO> createSensorData(@RequestBody SensorDataCreateDTO dto) {
         Bus bus = busService.getBusById(dto.getBusId())
                 .orElseThrow(() -> new RuntimeException("Bus not found"));
         SensorData sensorData = new SensorData();
@@ -69,7 +72,10 @@ public class SensorController {
         sensorData.setAnomaly(isAnomaly);
 
         SensorData saved = sensorService.createSensorData(sensorData);
-        return ResponseEntity.ok(saved);
+
+        // Generate and return AlertDTO
+        AlertDTO alert = sensorService.generateAlertFromSensorData(saved);
+        return ResponseEntity.ok(alert);
     }
 
     // Get all sensor data
@@ -103,13 +109,15 @@ public class SensorController {
         return sensorService.getSensorDataByTimeRange(from, to);
     }
 
-    // Update existing sensor data
+    // Update existing sensor data and return AlertDTO
     @Operation(summary = "Обновить существующие данные датчика")
     @PutMapping("{id}")
-    public ResponseEntity<SensorData> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorData updatedSensorData) {
+    public ResponseEntity<AlertDTO> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorData updatedSensorData) {
         SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
         if (sensorData != null) {
-            return ResponseEntity.ok(sensorData);
+            // Generate and return AlertDTO
+            AlertDTO alert = sensorService.generateAlertFromSensorData(sensorData);
+            return ResponseEntity.ok(alert);
         } else {
             return ResponseEntity.notFound().build();
         }
