@@ -11,6 +11,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,7 @@ public class FileController {
     @PostMapping(value = "/upload",
     consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             String resultFile = fileService.storeFile(file);
@@ -49,6 +51,7 @@ public class FileController {
     // Download a CSV file by name from the upload folder
     @Operation(summary = "Выгрузка CSV файла по названию из папки upload")
     @GetMapping(value = "/download/{filename:.+}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<InputStreamResource> downloadFile(@PathVariable String filename) throws IOException {
         // Validate that the file name is a CSV file to prevent path traversal attacks
         if (!filename.toLowerCase().endsWith(".csv")) {

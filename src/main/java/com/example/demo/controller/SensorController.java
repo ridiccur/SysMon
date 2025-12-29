@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,6 +60,7 @@ public class SensorController {
     // Create new sensor data with automatic anomaly check and return AlertDTO
     @Operation(summary = "Создать новые данные датчика")
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlertDTO> createSensorData(@RequestBody SensorDataCreateDTO dto) {
         Bus bus = busService.getBusById(dto.getBusId())
                 .orElseThrow(() -> new RuntimeException("Bus not found"));
@@ -82,6 +84,7 @@ public class SensorController {
     // Get all sensor data
     @Operation(summary = "Получить все данные датчиков")
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getAllSensorData(
         @PageableDefault(size = 20) Pageable pageable,
         @RequestParam(required = false) SensorType sensorType) {
@@ -94,6 +97,7 @@ public class SensorController {
     // Get sensor data with alerts/anomalies
     @Operation(summary = "Получить данные датчиков с тревогами")
     @GetMapping("alerts")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getAlerts() {
         return sensorService.getAnomalousSensorData();
     }
@@ -101,6 +105,7 @@ public class SensorController {
     // Get sensor data by bus ID
     @Operation(summary = "Получить данные датчиков по ID автобуса")
     @GetMapping("{busId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getSensorDataByBusId(@PathVariable Long busId) {
         return sensorService.getSensorDataByBusId(busId);
     }
@@ -108,6 +113,7 @@ public class SensorController {
     // Get sensor history by time range
     @Operation(summary = "Получить историю датчиков по диапазону времени")
     @GetMapping("/history")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getSensorHistory(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
@@ -117,6 +123,7 @@ public class SensorController {
     // Update existing sensor data and return AlertDTO
     @Operation(summary = "Обновить существующие данные датчика")
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlertDTO> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorData updatedSensorData) {
         SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
         if (sensorData != null) {
@@ -131,6 +138,7 @@ public class SensorController {
     // Delete sensor data by ID
     @Operation(summary = "Удалить данные датчика по ID")
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteSensorData(@PathVariable Long id) {
         boolean deleted = sensorService.deleteSensorData(id);
         if (deleted) {
@@ -143,6 +151,7 @@ public class SensorController {
     // Import sensor data from CSV file
     @Operation(summary = "Импорт данных датчиков из CSV файла")
     @PostMapping(value = "/import-csv", consumes = "multipart/form-data")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CsvImportResult> importCsv(
             @Parameter(description = "CSV file to upload", required = true)
             @RequestParam("file")
@@ -201,6 +210,8 @@ public class SensorController {
     // Export sensor data to CSV file
     @Operation(summary = "Экспорт данных датчиков в CSV файл")
     @GetMapping("/export-csv")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')"
+    )
     public void exportSensorDataToCsv(HttpServletResponse response) throws IOException {
         response.setContentType("text/csv");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sensor_data.csv");

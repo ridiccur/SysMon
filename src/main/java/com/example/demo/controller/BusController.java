@@ -4,6 +4,7 @@ import com.example.demo.model.Bus;
 import com.example.demo.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +23,9 @@ public class BusController {
     // Get all buses
     @Operation(summary = "Получить все автобусы")
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<Bus>> getAllBuses() {
+        System.out.println("Access granted to getAllBuses method");
         List<Bus> buses = busService.getAllBuses();
         return ResponseEntity.ok(buses);
     }
@@ -30,6 +33,7 @@ public class BusController {
     // Create a new bus
     @Operation(summary = "Создать новый автобус")
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Bus> createBus(@RequestBody Bus bus) {
         Bus createdBus = busService.createBus(bus);
         return ResponseEntity.ok(createdBus);
@@ -38,6 +42,7 @@ public class BusController {
     // Update an existing bus
     @Operation(summary = "Обновить существующий автобус")
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Bus> updateBus(@PathVariable Long id, @RequestBody Bus bus) {
         Bus updatedBus = busService.updateBus(id, bus);
         if (updatedBus != null) {
@@ -50,6 +55,7 @@ public class BusController {
     // Delete a bus by ID
     @Operation(summary = "Удалить автобус по ID")
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteBus(@PathVariable Long id) {
         boolean deleted = busService.deleteBus(id);
         if (deleted) {
