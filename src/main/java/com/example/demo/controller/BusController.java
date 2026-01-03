@@ -25,7 +25,6 @@ public class BusController {
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<Bus>> getAllBuses() {
-        System.out.println("Access granted to getAllBuses method");
         List<Bus> buses = busService.getAllBuses();
         return ResponseEntity.ok(buses);
     }

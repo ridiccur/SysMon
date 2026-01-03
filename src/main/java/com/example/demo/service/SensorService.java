@@ -35,7 +35,7 @@ public class SensorService {
     // Get sensor data by bus ID
     @Cacheable(value = "sensorDataByBus", key = "#busId")
     public List<SensorData> getSensorDataByBusId(Long busId) {
-        return sensorDataRepository.findByBusId(busId);
+        return sensorDataRepository.findByBus_Id(busId);
     }
 
     // Get sensor data by anomaly status

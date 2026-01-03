@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,11 @@ public class SensorData {
     @JoinColumn(name = "bus_id", nullable = false)
     @JsonIgnore
     private Bus bus;
+
+    @JsonProperty("busId")
+    public Long getBusId() {
+        return this.bus != null ? this.bus.getId() : null;
+    }
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sensor_type", nullable = false)

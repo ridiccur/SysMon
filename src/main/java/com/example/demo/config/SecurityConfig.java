@@ -41,9 +41,9 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) 
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
     throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable);
@@ -58,12 +58,14 @@ public class SecurityConfig {
                 }));
         http
                 .authorizeHttpRequests(authorize -> {
+                    authorize.requestMatchers("/", "/index.html", "/css/**", "/js/**", "/images/**", "/dashboard").permitAll();
                     authorize.requestMatchers(ALLOWED_URLS).permitAll();
                     authorize.requestMatchers("/api/auth/login")
                     .permitAll();
                     authorize.requestMatchers("/api/auth/refresh")
                     .permitAll();
-                    authorize.anyRequest().authenticated();
+                    authorize.requestMatchers("/api/**").authenticated();
+                    authorize.anyRequest().permitAll();
                 });
         http
                 .sessionManagement(session -> session.sessionCreationPolicy(
@@ -73,7 +75,7 @@ public class SecurityConfig {
                  exception.authenticationEntryPoint(jwtAuthEntryPoint));
         http
                 // .formLogin(login -> login.loginProcessingUrl("/api/auth/login"))
-                .addFilterBefore(jwtAuthFilter, 
+                .addFilterBefore(jwtAuthFilter,
                 UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

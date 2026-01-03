@@ -67,7 +67,7 @@ public class SensorController {
         SensorData sensorData = new SensorData();
         sensorData.setSensorType(dto.getSensorType());
         sensorData.setValue(dto.getValue());
-        sensorData.setTimestamp(dto.getTimestamp());
+        sensorData.setTimestamp(dto.getTimestamp() != null ? dto.getTimestamp().toLocalDateTime() : java.time.LocalDateTime.now());
         sensorData.setBus(bus);
 
         // Automatic check for anomaly
@@ -124,7 +124,16 @@ public class SensorController {
     @Operation(summary = "Обновить существующие данные датчика")
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<AlertDTO> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorData updatedSensorData) {
+    public ResponseEntity<AlertDTO> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorDataCreateDTO dto) {
+        Bus bus = busService.getBusById(dto.getBusId())
+                .orElseThrow(() -> new RuntimeException("Bus not found"));
+
+        SensorData updatedSensorData = new SensorData();
+        updatedSensorData.setBus(bus);
+        updatedSensorData.setSensorType(dto.getSensorType());
+        updatedSensorData.setValue(dto.getValue());
+        updatedSensorData.setTimestamp(dto.getTimestamp() != null ? dto.getTimestamp().toLocalDateTime() : java.time.LocalDateTime.now());
+
         SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
         if (sensorData != null) {
             // Generate and return AlertDTO

@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import com.example.demo.model.SensorType;
 
@@ -10,6 +10,6 @@ import lombok.Data;
 public class SensorDataCreateDTO {
     private SensorType sensorType;
     private Double value;
-    private LocalDateTime timestamp;
+    private OffsetDateTime timestamp;
     private Long busId;
 }

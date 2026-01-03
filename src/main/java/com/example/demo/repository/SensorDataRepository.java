@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public interface SensorDataRepository
             extends JpaRepository<SensorData, Long> {
             // Find sensor data by bus ID
-            List<SensorData> findByBusId(Long busId);
+            List<SensorData> findByBus_Id(Long busId);
 
             // Find sensor data by anomaly status
             List<SensorData> findByAnomaly(Boolean anomaly);

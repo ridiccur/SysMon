@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysMon - Мониторинг систем</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Авторизация</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit sensor modal -->
+    <div id="edit-sensor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-edit">&times;</span>
+            <h2>Изменить данные датчика</h2>
+            <form id="edit-sensor-form">
+                <div class="form-group">
+                    <label for="edit-sensor-type">Тип датчика:</label>
+                    <select id="edit-sensor-type" name="sensorType">
+                        <option value="ENGINE_TEMP">ENGINE_TEMP</option>
+                        <option value="TIRE_PRESSURE">TIRE_PRESSURE</option>
+                        <option value="FUEL_LEVEL">FUEL_LEVEL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-sensor-value">Значение:</label>
+                    <input type="number" id="edit-sensor-value" name="value" step="any" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-sensor-timestamp">Время (локальное):</label>
+                    <input type="datetime-local" id="edit-sensor-timestamp" name="timestamp">
+                </div>
+                <div class="form-group">
+                    <label for="edit-sensor-bus">ID автобуса:</label>
+                    <input type="number" id="edit-sensor-bus" name="busId" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Сохранить</button>
+                    <button type="button" id="cancel-edit-sensor">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-left">
+            <h1>SysMon</h1>
+        </div>
+        <div class="nav-right">
+            <span id="user-info"></span>
+            <button id="logout-btn" class="btn-secondary">Выйти</button>
+            <button id="change-password-btn" class="btn-secondary">Сменить пароль</button>
+            <button id="user-info-btn" class="btn-secondary">Инфо</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Меню</h3>
+            <button class="menu-btn" data-action="get-all-buses">Все автобусы</button>
+            <button class="menu-btn" data-action="create-bus" id="create-bus-btn">Создать автобус</button>
+            <button class="menu-btn" data-action="get-all-sensors">Все датчики</button>
+            <button class="menu-btn" data-action="create-sensor" id="create-sensor-btn">Создать датчик</button>
+            <button class="menu-btn" data-action="get-alerts">Тревоги</button>
+            <button class="menu-btn" data-action="export-csv">Экспорт CSV</button>
+            <button class="menu-btn" data-action="import-csv" id="import-csv-btn">Импорт CSV</button>
+        </div>
+        <div class="main-content">
+            <div id="result-container">
+                <h2>Панель управления</h2>
+                <p>Выберите действие из меню слева</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
