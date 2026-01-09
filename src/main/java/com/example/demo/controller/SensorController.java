@@ -6,6 +6,13 @@ import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -241,6 +248,64 @@ public class SensorController {
                     data.isAnomaly()
                 );
             }
+        }
+    }
+
+    // Export sensor data to XLSX (Excel)
+    @Operation(summary = "Экспорт данных датчиков в XLSX файл")
+    @GetMapping("/export-xlsx")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void exportSensorDataToXlsx(HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sensor_data.xlsx");
+
+        List<SensorData> sensorDataList = sensorService.getAll();
+
+        try (Workbook workbook = new XSSFWorkbook()) {
+            CreationHelper createHelper = workbook.getCreationHelper();
+            Sheet sheet = workbook.createSheet("Sensor Data");
+
+            // Header row
+            Row header = sheet.createRow(0);
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("Bus ID");
+            header.createCell(2).setCellValue("Timestamp");
+            header.createCell(3).setCellValue("Sensor Type");
+            header.createCell(4).setCellValue("Value");
+            header.createCell(5).setCellValue("Anomaly");
+
+            // Date cell style
+            CellStyle dateStyle = workbook.createCellStyle();
+            short dateFormat = createHelper.createDataFormat().getFormat("yyyy-mm-dd hh:mm:ss");
+            dateStyle.setDataFormat(dateFormat);
+
+            int rowIdx = 1;
+            for (SensorData data : sensorDataList) {
+                Row row = sheet.createRow(rowIdx++);
+                row.createCell(0).setCellValue(data.getId() != null ? data.getId() : 0);
+                Long busId = null;
+                if (data.getBus() != null) busId = data.getBus().getId();
+                row.createCell(1).setCellValue(busId != null ? busId : 0);
+
+                Cell tsCell = row.createCell(2);
+                if (data.getTimestamp() != null) {
+                    // write as string formatted
+                    tsCell.setCellValue(data.getTimestamp().toString());
+                    tsCell.setCellStyle(dateStyle);
+                } else {
+                    tsCell.setCellValue("");
+                }
+
+                row.createCell(3).setCellValue(data.getSensorType() != null ? data.getSensorType().name() : "");
+                row.createCell(4).setCellValue(data.getValue() != null ? data.getValue() : 0.0);
+                row.createCell(5).setCellValue(data.isAnomaly());
+            }
+
+            // Autosize columns
+            for (int i = 0; i <= 5; i++) sheet.autoSizeColumn(i);
+
+            workbook.write(response.getOutputStream());
+            response.getOutputStream().flush();
         }
     }
 }
