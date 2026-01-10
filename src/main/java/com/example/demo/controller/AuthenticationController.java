@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.http.ResponseEntity;
+import java.time.LocalDateTime;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -22,6 +24,7 @@ import com.example.demo.dto.LoginResponse;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserLoggedDto;
 import com.example.demo.service.UserService;
+import com.example.demo.service.TelegramNotificationService;
 import com.example.demo.service.impl.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +37,7 @@ public class AuthenticationController {
     private final AuthServiceImpl authService;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final TelegramNotificationService telegramNotificationService;
 
     // Authenticate user by login and password
     @Operation(summary = "Вход пользователя", description = "Аутентификация пользователя по логину и паролю. Возвращает JWT-токены.")
@@ -45,11 +49,18 @@ public class AuthenticationController {
             String accessToken,
             @CookieValue(name = "refresh_token", required = false)
             String refreshToken,
-            @RequestBody LoginRequest loginRequest) {
+            @RequestBody LoginRequest loginRequest,
+            HttpServletRequest request) {
 
-
-        return authService.login(loginRequest, accessToken, refreshToken);
-
+        String ip = extractClientIp(request);
+        try {
+            ResponseEntity<LoginResponse> resp = authService.login(loginRequest, accessToken, refreshToken);
+            telegramNotificationService.sendAuthNotification(loginRequest.username(), ip, "SUCCESS", LocalDateTime.now());
+            return resp;
+        } catch (Exception ex) {
+            telegramNotificationService.sendAuthNotification(loginRequest.username(), ip, "FAILURE", LocalDateTime.now());
+            throw ex;
+        }
     }
 
     // Refresh access token using refresh token
@@ -73,8 +84,28 @@ public class AuthenticationController {
     @PostMapping("/logout")
     public ResponseEntity<LoginResponse> logout(
             @CookieValue(name = "access_token", required = false) String accessToken,
-            @CookieValue(name = "refresh_token", required = false) String refreshToken) {
-        return authService.logout(accessToken, refreshToken);
+            @CookieValue(name = "refresh_token", required = false) String refreshToken,
+            HttpServletRequest request) {
+
+        String ip = extractClientIp(request);
+        String username = "-";
+        try {
+            UserLoggedDto dto = authService.getUserLoggedInfo();
+            username = dto.username();
+        } catch (Exception e) {
+        }
+
+        ResponseEntity<LoginResponse> resp = authService.logout(accessToken, refreshToken);
+        telegramNotificationService.sendAuthNotification(username, ip, "LOGOUT", LocalDateTime.now());
+        return resp;
+    }
+
+    private String extractClientIp(HttpServletRequest request) {
+        String xf = request.getHeader("X-Forwarded-For");
+        if (xf != null && !xf.isBlank()) {
+            return xf.split(",")[0].trim();
+        }
+        return request.getRemoteAddr();
     }
 
     // Get current authenticated user info
