@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 // Controller for handling file uploads and downloads
 @Tag(name = "File handling controller")
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class FileController {
@@ -38,12 +40,16 @@ public class FileController {
     produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
+        log.info("Загрузка файла: {} ({} байт)", file.getOriginalFilename(), file.getSize());
         try {
             String resultFile = fileService.storeFile(file);
-                return ResponseEntity.ok(resultFile);
+            log.info("Файл успешно загружен: {}", resultFile);
+            return ResponseEntity.ok(resultFile);
         } catch (IOException e) {
+            log.error("Ошибка ввода-вывода при загрузке файла: {}", e.getMessage());
             return ResponseEntity.badRequest().build();
         } catch (Exception e) {
+            log.error("Неожиданная ошибка при загрузке файла: {}", e.getMessage());
             return ResponseEntity.notFound().build();
         }
     }
@@ -53,8 +59,10 @@ public class FileController {
     @GetMapping(value = "/download/{filename:.+}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<InputStreamResource> downloadFile(@PathVariable String filename) throws IOException {
-        // Validate that the file name is a CSV file to prevent path traversal attacks
+        log.info("Загрузка файла для скачивания: {}", filename);
+        // Validate that the file name is a CSV file
         if (!filename.toLowerCase().endsWith(".csv")) {
+            log.warn("Неправильный тип файла запрошен для скачивания: {}", filename);
             return ResponseEntity.badRequest().build();
         }
 
@@ -63,21 +71,24 @@ public class FileController {
 
         // Check if file exists
         if (!Files.exists(filePath)) {
+            log.warn("Файл не найден для скачивания: {}", filename);
             return ResponseEntity.notFound().build();
         }
 
-        // Check if the resolved path is within the upload directory (security check)
+        // Check if the resolved path is within the upload directory
         String uploadDir = fileService.getUploadDir();
         Path uploadDirPath = Path.of(uploadDir).normalize();
         Path normalizedFilePath = filePath.normalize();
         if (!normalizedFilePath.startsWith(uploadDirPath)) {
+            log.error("Нарушение безопасности: попытка атаки через путь к файлу для файла: {}", filename);
             return ResponseEntity.badRequest().build();
         }
 
-        // Verify that the file is actually inside the upload directory to prevent path traversal
+        // Verify that the file is actually inside the upload directory
         String filePathStr = normalizedFilePath.toString();
         String uploadDirStr = uploadDirPath.toString();
         if (!filePathStr.startsWith(uploadDirStr)) {
+            log.error("Нарушение безопасности: попытка атаки через путь к файлу для файла: {}", filename);
             return ResponseEntity.badRequest().build();
         }
 
@@ -85,7 +96,8 @@ public class FileController {
         FileInputStream fileInputStream = new FileInputStream(normalizedFilePath.toFile());
         InputStreamResource resource = new InputStreamResource(fileInputStream);
 
-        // Return file with appropriate headers
+        // Return file
+        log.info("Файл успешно подготовлен для скачивания: {}", filename);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
                 .contentLength(Files.size(normalizedFilePath))

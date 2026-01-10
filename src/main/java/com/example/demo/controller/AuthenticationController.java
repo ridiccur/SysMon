@@ -27,9 +27,11 @@ import com.example.demo.service.UserService;
 import com.example.demo.service.TelegramNotificationService;
 import com.example.demo.service.impl.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 // Controller for handling authentication and session management
 @Tag(name = "Authentication", description = "API для аутентификации и управления сессиями")
+@Slf4j
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -53,11 +55,15 @@ public class AuthenticationController {
             HttpServletRequest request) {
 
         String ip = extractClientIp(request);
+        log.info("Попытка входа пользователя: {} с IP: {}", loginRequest.username(), ip);
+
         try {
             ResponseEntity<LoginResponse> resp = authService.login(loginRequest, accessToken, refreshToken);
+            log.info("Успешный вход пользователя: {}", loginRequest.username());
             telegramNotificationService.sendAuthNotification(loginRequest.username(), ip, "SUCCESS", LocalDateTime.now());
             return resp;
         } catch (Exception ex) {
+            log.error("Ошибка при входе пользователя {}: {}", loginRequest.username(), ex.getMessage());
             telegramNotificationService.sendAuthNotification(loginRequest.username(), ip, "FAILURE", LocalDateTime.now());
             throw ex;
         }
@@ -72,8 +78,10 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponse> refreshToken(
             @CookieValue(name = "refresh_token", required = false) String refreshToken) {
         if (refreshToken == null) {
+            log.warn("Попытка обновления токена без refresh-токена");
             return ResponseEntity.notFound().build();
         }
+        log.info("Обновление access-токена");
         return authService.refresh(refreshToken);
     }
 
@@ -93,8 +101,10 @@ public class AuthenticationController {
             UserLoggedDto dto = authService.getUserLoggedInfo();
             username = dto.username();
         } catch (Exception e) {
+            log.debug("Не удалось получить информацию о пользователе при выходе: {}", e.getMessage());
         }
 
+        log.info("Выход пользователя: {} с IP: {}", username, ip);
         ResponseEntity<LoginResponse> resp = authService.logout(accessToken, refreshToken);
         telegramNotificationService.sendAuthNotification(username, ip, "LOGOUT", LocalDateTime.now());
         return resp;
@@ -115,6 +125,7 @@ public class AuthenticationController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/info")
     public ResponseEntity<UserLoggedDto> userLoggedInfo() {
+        log.info("Получение информации о текущем пользователе");
         return ResponseEntity.ok(authService.getUserLoggedInfo());
     }
 
@@ -122,8 +133,10 @@ public class AuthenticationController {
     @Operation(summary = "Изменение пароля")
     @PutMapping("/change_password")
     public ResponseEntity<String> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
+        log.info("Попытка изменения пароля для пользователя");
 
         if (!request.confirmPassword().equals(request.newPassword())) {
+            log.warn("Попытка изменения пароля: подтверждение пароля не совпадает");
             return ResponseEntity.badRequest().build();
         }
         UserDto user = userService.getUser(authService.getUserLoggedInfo().username());
@@ -132,8 +145,10 @@ public class AuthenticationController {
             userService.updateUser(user.id(),
                     new UserDto(user.id(), user.username(),
                             request.newPassword(), user.role(), user.permissions()));
+            log.info("Пароль успешно изменен для пользователя: {}", user.username());
             return ResponseEntity.ok("пароль успешно изменен");
         }
+        log.warn("Попытка изменения пароля: неверный текущий пароль для пользователя: {}", user.username());
         return ResponseEntity.notFound().build();
     }
 }

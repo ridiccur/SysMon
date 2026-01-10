@@ -69,6 +69,8 @@ public class SensorController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlertDTO> createSensorData(@RequestBody SensorDataCreateDTO dto) {
+        log.info("Создание новых данных датчика: датчик={}, значение={}, автобус ID={}",
+                 dto.getSensorType(), dto.getValue(), dto.getBusId());
         Bus bus = busService.getBusById(dto.getBusId())
                 .orElseThrow(() -> new RuntimeException("Bus not found"));
         SensorData sensorData = new SensorData();
@@ -82,9 +84,11 @@ public class SensorController {
         sensorData.setAnomaly(isAnomaly);
 
         SensorData saved = sensorService.createSensorData(sensorData);
+        log.info("Данные датчика успешно созданы с ID: {}", saved.getId());
 
         // Generate and return AlertDTO
         AlertDTO alert = sensorService.generateAlertFromSensorData(saved);
+        log.info("Сгенерировано уведомление для датчика ID: {}", saved.getId());
         return ResponseEntity.ok(alert);
     }
 
@@ -95,10 +99,15 @@ public class SensorController {
     public List<SensorData> getAllSensorData(
         @PageableDefault(size = 20) Pageable pageable,
         @RequestParam(required = false) SensorType sensorType) {
+        log.info("Получение всех данных датчиков: pageable={}, sensorType={}", pageable, sensorType);
+        List<SensorData> result;
         if (sensorType != null) {
-            return sensorService.getSensorDataByType(sensorType);
+            result = sensorService.getSensorDataByType(sensorType);
+        } else {
+            result = sensorService.getAll();
         }
-        return sensorService.getAll();
+        log.info("Получено записей: {}", result != null ? result.size() : 0);
+        return result;
     }
 
     // Get sensor data with alerts/anomalies
@@ -106,7 +115,10 @@ public class SensorController {
     @GetMapping("alerts")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getAlerts() {
-        return sensorService.getAnomalousSensorData();
+        log.info("Получение данных с тревогами");
+        List<SensorData> alerts = sensorService.getAnomalousSensorData();
+        log.info("Найдено тревожных записей: {}", alerts != null ? alerts.size() : 0);
+        return alerts;
     }
 
     // Get sensor data by bus ID
@@ -114,7 +126,10 @@ public class SensorController {
     @GetMapping("{busId}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<SensorData> getSensorDataByBusId(@PathVariable Long busId) {
-        return sensorService.getSensorDataByBusId(busId);
+        log.info("Получение данных датчиков по автобусу: busId={}", busId);
+        List<SensorData> list = sensorService.getSensorDataByBusId(busId);
+        log.info("Найдено записей для автобуса {}: {}", busId, list != null ? list.size() : 0);
+        return list;
     }
 
     // Get sensor history by time range
@@ -124,7 +139,10 @@ public class SensorController {
     public List<SensorData> getSensorHistory(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
-        return sensorService.getSensorDataByTimeRange(from, to);
+        log.info("Получение истории датчиков: from={} to={}", from, to);
+        List<SensorData> history = sensorService.getSensorDataByTimeRange(from, to);
+        log.info("Найдено записей в диапазоне {} - {}: {}", from, to, history != null ? history.size() : 0);
+        return history;
     }
 
     // Update existing sensor data and return AlertDTO
@@ -132,6 +150,7 @@ public class SensorController {
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AlertDTO> updateSensorData(@PathVariable Long id, @RequestBody @Valid SensorDataCreateDTO dto) {
+        log.info("Обновление данных датчика: id={}, sensorType={}, value={}, busId={}", id, dto.getSensorType(), dto.getValue(), dto.getBusId());
         Bus bus = busService.getBusById(dto.getBusId())
                 .orElseThrow(() -> new RuntimeException("Bus not found"));
 
@@ -141,13 +160,19 @@ public class SensorController {
         updatedSensorData.setValue(dto.getValue());
         updatedSensorData.setTimestamp(dto.getTimestamp() != null ? dto.getTimestamp().toLocalDateTime() : java.time.LocalDateTime.now());
 
-        SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
-        if (sensorData != null) {
-            // Generate and return AlertDTO
-            AlertDTO alert = sensorService.generateAlertFromSensorData(sensorData);
-            return ResponseEntity.ok(alert);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            SensorData sensorData = sensorService.updateSensorData(id, updatedSensorData);
+            if (sensorData != null) {
+                AlertDTO alert = sensorService.generateAlertFromSensorData(sensorData);
+                log.info("Данные датчика успешно обновлены: id={}", id);
+                return ResponseEntity.ok(alert);
+            } else {
+                log.warn("Обновление не выполнено: данные с id={} не найдены", id);
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            log.error("Ошибка при обновлении данных датчика id={}", id, e);
+            throw e;
         }
     }
 
@@ -156,10 +181,13 @@ public class SensorController {
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteSensorData(@PathVariable Long id) {
+        log.info("Удаление данных датчика: id={}", id);
         boolean deleted = sensorService.deleteSensorData(id);
         if (deleted) {
+            log.info("Данные датчика удалены: id={}", id);
             return ResponseEntity.noContent().build();
         } else {
+            log.warn("Удаление не выполнено: данные с id={} не найдены", id);
             return ResponseEntity.notFound().build();
         }
     }
@@ -172,8 +200,7 @@ public class SensorController {
             @Parameter(description = "CSV file to upload", required = true)
             @RequestParam("file")
             MultipartFile file) {
-        log.info("Received CSV file import request: {} ({} bytes)",
-                file.getOriginalFilename(), file.getSize());
+        log.info("Запрошен импорт CSV файла: {} ({} байт)", file.getOriginalFilename(), file.getSize());
 
         // Check for CSV format
         if (!isCsvFile(file)) {
@@ -193,17 +220,17 @@ public class SensorController {
             CsvImportResult importResult = csvImportService.importProductsFromCsv(file);
 
             if (importResult.hasError()) {
-                log.warn("CSV import completed with {} successes and {} failures",
-                        importResult.getSuccessCount(), importResult.getFailedCount());
+                log.warn("Импорт CSV завершён с {} успешными и {} неудачами",
+                    importResult.getSuccessCount(), importResult.getFailedCount());
                 return ResponseEntity.unprocessableEntity().body(importResult);
             } else {
-                log.info("CSV import successfully completed: {} records imported",
-                        importResult.getSuccessCount());
+                log.info("Импорт CSV успешно завершён: импортировано {} записей",
+                    importResult.getSuccessCount());
                 return ResponseEntity.ok(importResult);
             }
 
         } catch (Exception e) {
-            log.error("Unexpected error during CSV import", e);
+            log.error("Неожиданная ошибка при импорте CSV", e);
             CsvImportResult result = new CsvImportResult(0, 1,
                     List.of("Internal server error: " + e.getMessage()));
             return ResponseEntity.internalServerError().body(result);
@@ -233,6 +260,7 @@ public class SensorController {
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sensor_data.csv");
 
         List<SensorData> sensorDataList = sensorService.getAll();
+        log.info("Экспорт данных в CSV: экспортируется {} записей в sensor_data.csv", sensorDataList != null ? sensorDataList.size() : 0);
 
         CSVFormat csvFormat = CSVFormat.DEFAULT.builder()
             .setHeader("busId", "timestamp", "sensorType", "value", "anomaly")
@@ -260,6 +288,7 @@ public class SensorController {
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=sensor_data.xlsx");
 
         List<SensorData> sensorDataList = sensorService.getAll();
+        log.info("Экспорт данных в XLSX: экспортируется {} записей в sensor_data.xlsx", sensorDataList != null ? sensorDataList.size() : 0);
 
         try (Workbook workbook = new XSSFWorkbook()) {
             CreationHelper createHelper = workbook.getCreationHelper();
