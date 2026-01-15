@@ -263,6 +263,9 @@ function hasPermission(action) {
 // Выполнение действия
 async function performAction(action) {
     switch (action) {
+        case 'dashboard':
+            loadDashboard();
+            break;
         case 'get-all-buses':
             getAllBuses();
             break;
@@ -909,6 +912,220 @@ function importCsv() {
     input.click();
 }
 
+// Dashboard functions
+async function loadDashboard() {
+    try {
+        const response = await fetch('/api/sensors', {
+            method: 'GET',
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const sensors = await response.json();
+            displayDashboard(sensors);
+        } else {
+            displayDefaultDashboard();
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки dashboard:', error);
+        displayDefaultDashboard();
+    }
+}
+
+function displayDefaultDashboard() {
+    const dashboardHTML = `
+        <div class="dashboard-header">
+            <h2>Панель управления</h2>
+            <p>Добро пожаловать в SysMon - систему мониторинга</p>
+        </div>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-label">Всего датчиков</div>
+                <div class="stat-number">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Аномальные показания</div>
+                <div class="stat-number">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Всего записей</div>
+                <div class="stat-number">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Активных автобусов</div>
+                <div class="stat-number">0</div>
+            </div>
+        </div>
+        <p style="text-align:center; color:#6b7280;">Загрузите данные из меню слева, чтобы увидеть статистику</p>
+    `;
+    resultContainer.innerHTML = dashboardHTML;
+}
+
+function displayDashboard(sensors) {
+    // Calculate statistics
+    const uniqueSensorTypes = new Map();
+    let anomalyCount = 0;
+    let uniqueBuses = new Set();
+
+    sensors.forEach(sensor => {
+        // Count sensor types
+        const type = sensor.sensorType || 'Unknown';
+        uniqueSensorTypes.set(type, (uniqueSensorTypes.get(type) || 0) + 1);
+
+        // Count anomalies
+        if (sensor.anomaly) {
+            anomalyCount++;
+        }
+
+        // Count unique buses
+        if (sensor.bus && sensor.bus.id) {
+            uniqueBuses.add(sensor.bus.id);
+        } else if (sensor.busId) {
+            uniqueBuses.add(sensor.busId);
+        }
+    });
+
+    // Get latest 5 readings sorted by timestamp
+    const latestReadings = sensors
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+        .slice(0, 5);
+
+    // Create dashboard HTML
+    let html = `
+        <div class="dashboard-header">
+            <h2>Панель управления</h2>
+            <p>Общая статистика системы мониторинга</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-label">Всего датчиков</div>
+                <div class="stat-number">${sensors.length}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Аномальные показания</div>
+                <div class="stat-number">${anomalyCount}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Типов датчиков</div>
+                <div class="stat-number">${uniqueSensorTypes.size}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Активных автобусов</div>
+                <div class="stat-number">${uniqueBuses.size}</div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <h4>Распределение типов датчиков</h4>
+                <div class="chart-wrapper">
+                    <canvas id="sensor-types-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="latest-readings">
+            <h3>Последние 5 показаний датчиков</h3>
+            <table class="readings-table">
+                <thead>
+                    <tr>
+                        <th>ID датчика</th>
+                        <th>Тип датчика</th>
+                        <th>Значение</th>
+                        <th>Время</th>
+                        <th>Аномалия</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    latestReadings.forEach(sensor => {
+        const anomalyText = sensor.anomaly ? 'Да' : 'Нет';
+        const anomalyClass = sensor.anomaly ? 'anomaly-true' : 'anomaly-false';
+        html += `
+                    <tr>
+                        <td>#${sensor.id}</td>
+                        <td>${sensor.sensorType}</td>
+                        <td>${typeof sensor.value === 'number' ? sensor.value.toFixed(2) : sensor.value}</td>
+                        <td>${formatDateTime(sensor.timestamp)}</td>
+                        <td class="${anomalyClass}">${anomalyText}</td>
+                    </tr>
+        `;
+    });
+
+    html += `
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    resultContainer.innerHTML = html;
+
+    // Render chart after DOM is ready
+    setTimeout(() => {
+        renderSensorTypesChart(uniqueSensorTypes);
+    }, 100);
+}
+
+function renderSensorTypesChart(sensorTypes) {
+    const ctx = document.getElementById('sensor-types-chart');
+    if (!ctx) return;
+
+    const labels = Array.from(sensorTypes.keys());
+    const data = Array.from(sensorTypes.values());
+
+    // Color palette for chart
+    const colors = [
+        '#667eea',
+        '#f5576c',
+        '#4facfe',
+        '#00f2fe',
+        '#fa709a',
+        '#fee140',
+        '#43e97b',
+        '#fa7231'
+    ];
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: colors.slice(0, labels.length),
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+}
+
 // Close modal on click
 document.querySelector('.close').addEventListener('click', closeAuthModal);
 
@@ -924,6 +1141,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const authStatus = await checkAuthStatus();
     if (!authStatus) {
         showAuthModal();
+    } else {
+        // Load dashboard on initial load
+        loadDashboard();
     }
 });
 
