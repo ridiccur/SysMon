@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 application.yml
 .env
+.sql
 
 ### STS ###
 .apt_generated
