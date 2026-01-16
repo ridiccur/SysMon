@@ -10,13 +10,13 @@ spring:
         activate:
             on-profile: dev
     datasource:
-        url: jdbc:postgresql://localhost:5432/"bd_name"
-        username: "username"
-        password: "password"
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
         driver-class-name: org.postgresql.Driver
         hikari:
             maximum-pool-size: 20
-    
+
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQLDialect
         hibernate:
@@ -26,7 +26,7 @@ spring:
             max-file-size: 10MB
             max-request-size: 10MB
 jwt:
-    secret: "secret"
+    secret: ${JWT_SECRET}
     access:
         cookie_name: access_token
         duration:
@@ -38,15 +38,15 @@ jwt:
             day: 7
             second: 604800
 upload:
-    path: "path"
+    path: .uploads
 telegram:
     bot:
-        token: "bot_token"
+        token: ${TELEGRAM_BOT_TOKEN}
     chat:
-        id: "chat_id"
+        id: ${TELEGRAM_CHAT_ID}
 logging:
     file:
-        name: sysmon.log
+        name: log/system.log
 server:
     port: 8080
 ---
@@ -54,5 +54,51 @@ spring:
     config:
         activate:
             on-profile: prod
+    datasource:
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
+        driver-class-name: org.postgresql.Driver
+        hikari:
+            maximum-pool-size: 30
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+        show-sql: false
+    servlet:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 10MB
+jwt:
+    secret: ${JWT_SECRET}
+    access:
+        cookie_name: access_token
+        duration:
+            minute: 60
+            second: 3600
+    refresh:
+        cookie_name: refresh_token
+        duration:
+            day: 7
+            second: 604800
+upload:
+    path: .uploads
+telegram:
+    bot:
+        token: ${TELEGRAM_BOT_TOKEN}
+    chat:
+        id: ${TELEGRAM_CHAT_ID}
+logging:
+    level:
+        root: INFO
+        com.example.demo: INFO
+    file:
+        name: log/system.log
 server:
-    port: 9001
+    port: ${APP_PORT:9001}
+    servlet:
+        context-path: /
+    compression:
+        enabled: true
+        min-response-size: 1024
